@@ -16,7 +16,7 @@ export const handleCreateBlog = async (req, res) => {
       author,
       images: imagePaths,
     });
-    newBlog.save();
+    await newBlog.save();
     return res.send("blog uploaded");
   } catch (error) {
     console.log("error creating new blog", error);
