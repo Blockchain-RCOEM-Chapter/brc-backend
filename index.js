@@ -9,7 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import auth from "./middleware/auth.js";
 import cookieParser from "cookie-parser";
-
+import EventRoute from "./route/event.route.js";
 dotenv.config();
 
 const app = express();
@@ -28,9 +28,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
+app.use("/eventimages", express.static("EventImages"));
 app.use("/user", userRoutes);
 app.use("/blog", auth, blogRoutes);
+app.use("/events", auth,EventRoute);
 app.get("/", (req, res) => {
   return res.send("Hello World");
 });
