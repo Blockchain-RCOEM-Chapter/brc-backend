@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/getevent",GetEvents);
 router.post("/addevent",uploadBrochure,AddEvent);
-router.patch("/updateevent/:id",uploadBrochure,UpdateEvent);
+router.patch("/updateevent/:id",UpdateEvent);
 router.delete("/deleteevent/:id",DeleteEvent); 
 
 export default router
