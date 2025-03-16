@@ -4,10 +4,10 @@ import dotenv from "dotenv";
 import { ConnectDb } from "./ConnectDb.js";
 import blogRoutes from "./route/blog.js";
 import userRoutes from "./route/user.js";
+import contactRoutes from "./route/contact.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import auth from "./middleware/auth.js";
 import cookieParser from "cookie-parser";
 import EventRoute from "./route/event.route.js";
 dotenv.config();
@@ -27,11 +27,15 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/eventimages", express.static("EventImages"));
+
 app.use("/user", userRoutes);
-app.use("/blog", auth, blogRoutes);
-app.use("/events", auth,EventRoute);
+app.use("/contact", contactRoutes);
+app.use("/blog", blogRoutes);
+app.use("/events",EventRoute);
+
 app.get("/", (req, res) => {
   return res.send("Hello World");
 });
