@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+await ConnectDb();
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -40,7 +42,4 @@ app.get("/", (req, res) => {
   return res.send("Hello World");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  ConnectDb();
-});
+export default app;
